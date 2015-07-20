@@ -12,7 +12,8 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 
-var requestHandler = function(request, response) {
+module.exports = {
+  requestHandler: function(request, response) {
   // Request and Response come from node's http module.
   //
   // They include information about both the incoming request, such as
@@ -31,7 +32,7 @@ var requestHandler = function(request, response) {
 
   // The outgoing status.
   var statusCode = 200;
-
+  console.log(statusCode);
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
 
@@ -53,8 +54,8 @@ var requestHandler = function(request, response) {
   // Calling .end "flushes" the response's internal buffer, forcing
   // node to actually send all the data over to the client.
   response.end("Hello, World!");
+}
 };
-
 // These headers will allow Cross-Origin Resource Sharing (CORS).
 // This code allows this server to talk to websites that
 // are on different domains, for instance, your chat client.

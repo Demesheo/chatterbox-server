@@ -10,6 +10,16 @@
   "devDependencies": {
     "mocha": "^1.21.4",
     "request": "^2.34.0",
-    "chai": "^1.9.0"
+    "chai": "^1.9.0",
+    "jquery": "~2.0.3",
+    "underscore": "~1.8.3",
+    "momentjs": "~2.10.3"
+  },
+  "dependencies": {
+    "jQuery": "^1.7.4",
+    "jquery": "^2.1.4",
+    "nodemon": "^1.3.8",
+    "request": "^2.59.0",
+    "underscore": "^1.8.3"
   }
 }
