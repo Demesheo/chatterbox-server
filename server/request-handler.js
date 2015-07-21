@@ -28,6 +28,8 @@ module.exports = {
   // Adding more logging to your server can be an easy way to get passive
   // debugging help, but you should always be careful about leaving stray
   // console.logs in your code.
+console.log("response :", response);
+
   console.log("Serving request type " + request.method + " for url " + request.url);
 
   // The outgoing status.
@@ -46,20 +48,26 @@ module.exports = {
   // which includes the status and all headers.
   response.writeHead(statusCode, headers);
 
+
+var resultsData = JSON.stringify("practice");
   // Make sure to always call response.end() - Node may not send
+var dataObj = {};
+dataObj.results = [];
   // anything back to the client until you do. The string you pass to
+
+  var JSONobj 
   // response.end() will be the body of the response - i.e. what shows
   // up in the browser.
+
   //
   // Calling .end "flushes" the response's internal buffer, forcing
   // node to actually send all the data over to the client.
-  response.end("Hello, World!");
+  response.end(JSON.stringify(dataObj));
 }
 };
 // These headers will allow Cross-Origin Resource Sharing (CORS).
 // This code allows this server to talk to websites that
 // are on different domains, for instance, your chat client.
-//
 // Your chat client is running from a url like file://your/chat/client/index.html,
 // which is considered a different domain.
 //
