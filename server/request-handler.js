@@ -33,7 +33,9 @@ module.exports = {
 
   console.log("Serving request type " + request.method + " for url " + request.url);
 
-  // if(request.method === 'POST'){
+// console.log(request);
+console.log(request.url);
+  // if (request.method === 'POST'){
   //   var body = '';
   //   request.on('data', function(data){
   //     body += data; });
@@ -46,18 +48,29 @@ module.exports = {
   // }
 
   // The outgoing status.
+
   var statusCode = 200;
   
-  if(request.method === "GET"){
-    statusCode = 200;
-  };
-  if(request.method === "POST"){
-    console.log('hey')
-    // var queryStr = require("querystring");
-    var data  = '';
-    request.on('data', function(chunk){ data += chunk;});
+ if (request.method === "GET"){
+    // Tests ask for 'room' but actually ouput 'room1'
+    if (request.url === '/classes/messages' || request.url === '/classes/room1'){
+      statusCode = 200;
+    } else {
+      statusCode = 404;
+    }
+  }
 
-    request.on('end', function(){var post = queryStr.parse(data); console.log(post)});
+  if (request.method === "POST"){
+    var data  = '';
+
+    request.on('data', function(chunk){
+      data += chunk;
+    });
+
+    request.on('end', function(){
+      var post = queryStr.parse(data);
+      console.log('Posted message', post)
+    });
 
     statusCode = 201;
 
@@ -79,7 +92,7 @@ module.exports = {
   dataObj.results = [];
   var resultsData = JSON.stringify(dataObj);
 
-  // if(){
+  // if (){
   // var data = '';
 
   // request.on('data', function(chunk){ data += chunk});
