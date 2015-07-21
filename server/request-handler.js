@@ -46,12 +46,12 @@ console.log(request.url);
 
   //     response.end('post recieved');
   // }
-
+  var messagesArray = [];
   // The outgoing status.
 
   var statusCode = 200;
   
- if (request.method === "GET"){
+  if (request.method === "GET"){
     // Tests ask for 'room' but actually ouput 'room1'
     if (request.url === '/classes/messages' || request.url === '/classes/room1'){
       statusCode = 200;
@@ -67,15 +67,26 @@ console.log(request.url);
       data += chunk;
     });
 
+
     request.on('end', function(){
       var post = queryStr.parse(data);
-      console.log('Posted message', post)
+      // 
+      for(var i = 0; i < messagesArray.length; i++){
+        if(messagesArray[i] === post){
+          request.end(post);
+        } else {
+        messagesArray.push(post);
+        }
+      }
+
+      // console.log('Posted message', post);
     });
 
     statusCode = 201;
 
   };
   
+  console.log(messagesArray);
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
 
