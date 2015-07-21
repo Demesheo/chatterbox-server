@@ -30,22 +30,8 @@ module.exports = {
   // debugging help, but you should always be careful about leaving stray
   // console.logs in your code.
 
-
   console.log("Serving request type " + request.method + " for url " + request.url);
-
-// console.log(request);
-console.log(request.url);
-  // if (request.method === 'POST'){
-  //   var body = '';
-  //   request.on('data', function(data){
-  //     body += data; });
-
-  //     request.on('end', function(){"Body: " + body});
-
-  //     response.writeHead(200, {'Content-Type': 'text/html'})
-
-  //     response.end('post recieved');
-  // }
+ 
   var messagesArray = [];
   // The outgoing status.
 
@@ -70,23 +56,14 @@ console.log(request.url);
 
     request.on('end', function(){
       var post = queryStr.parse(data);
-      // 
-      for(var i = 0; i < messagesArray.length; i++){
-        if(messagesArray[i] === post){
-          request.end(post);
-        } else {
-        messagesArray.push(post);
-        }
-      }
-
-      // console.log('Posted message', post);
+      console.log('Posted message', post);
     });
 
     statusCode = 201;
 
   };
   
-  console.log(messagesArray);
+  
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
 
@@ -103,13 +80,7 @@ console.log(request.url);
   dataObj.results = [];
   var resultsData = JSON.stringify(dataObj);
 
-  // if (){
-  // var data = '';
-
-  // request.on('data', function(chunk){ data += chunk});
-
-  // request.on('end', function(){var post = queryStr.parse(data);});
-  // }
+ 
   // Make sure to always call response.end() - Node may not send
   // anything back to the client until you do. The string you pass to
  
